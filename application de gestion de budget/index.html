@@ -1,0 +1,298 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>application de gestion de budget</title>
+    <link rel="stylesheet" href="css/app_gb.css">
+    <script src="js/app_gb.js"></script>
+</head>
+
+<body>
+    <h1 class="titre">Gestion Budget</h1>
+    <!-- ==section categories== -->
+    <div class="description">
+        <h2 id="rev">Revenu</h2>
+        <h2 id="dep">Depense</h2>
+        <h2 id="solde">Solde</h2>
+    </div>
+    <div class="budget">
+        <div id="div1"><span class="contee" style="color: orangered;"></span></div>
+        <div id="div2"><span class="conter" style="color: orangered;"></span></div>
+        <div id="div3">20.000 CFA</div>
+    </div>
+
+    <!-- ==debut section depense== -->
+
+    <section class="ensenble" style="margin-top: -6;">
+
+        <div class="listes">
+            <h2>Listes des Revenus </h2>
+
+            <!-- modal revenu -->
+            <div class="modal-conteneur" id="depenseModal">
+                <div class="modal">
+                    <span class="fermer">X</span>
+                    <div class="form">
+                        <form method="post">
+                            <label for="titre">titre</label>
+                            <input class="input-class" type="text" name="titre" id="titre" />
+                            <label for="montant">montant</label>
+                            <input class="input-class" type="number" name="montant" id="montant">
+                            <button type="submit" class="addContactBotton" style="width: 100%;">Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <button id="btnAjouDepModal" type="button" style="background: rgb(251, 197, 197);
+            ">ajouter Revenus</button>
+        </div>
+        <div class="section-depenses">
+            <table class="depense">
+                <thead>
+                    <tr>
+                        <th>TITRE</th>
+                        <th>MONTANT</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+
+                <!--
+                    <tbody>
+                     <tr>
+                        <td>Transport</td>
+                        <td>200 CFA</td>
+                        <td>
+                            <button class="btn-add" type="button"> Modifier</button> <button class="btn-dell" type="button"> Supprimer</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nourriture</td>
+                        <td>1000 CFA</td>
+                        <td>
+                            <button class="btn-add" type="button"> Modifier</button> <button class="btn-dell" type="button"> Supprimer</button></button>
+                        </td>
+                    </tr>
+                 </tbody> 
+                -->
+            </table>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- partie javascript -->
+    <script>
+        let Revenus = [{
+            titre: 'Salaire',
+            montant: '2000'
+        }, {
+            titre: 'Bonus',
+            montant: '100'
+        }]
+        const conteeElement = document.querySelector('.contee')
+        const table = document.querySelector('.depense')
+        const tblBody = document.createElement('tbody')
+            //fonction conter
+        function setContee(contee) {
+            conteeElement.innerHTML = contee
+        }
+        //ramplire table
+        function createTable() {
+            for (let index = 0; index < 2; index++) {
+                let row = document.createElement('tr')
+                    //cree le boutton de supprimer
+                let buttonCell = document.createElement('td')
+                let delletButton = document.createElement('button')
+                let updetButton = document.createElement('button')
+                let buttonText = document.createTextNode('Supprimer')
+                let buttonTextupdet = document.createTextNode('Modifier')
+                delletButton.setAttribute('class', 'btn-dell')
+                updetButton.setAttribute('class', 'btn-add')
+                delletButton.appendChild(buttonText)
+                updetButton.appendChild(buttonTextupdet)
+                for (let element = 0; element < Revenus.length; element++) {
+                    //ajouter les td
+                    const cell = document.createElement('td')
+                    const cellText = document.createTextNode(Object.values(Revenus[index])[element])
+                    delletButton.setAttribute('montantRevenu', Revenus[index].montant)
+                    buttonCell.appendChild(delletButton)
+                    buttonCell.appendChild(updetButton)
+                    cell.appendChild(cellText)
+                    row.appendChild(cell)
+                    row.appendChild(buttonCell)
+                    row.appendChild(buttonCell)
+                    row.setAttribute('id', Revenus[index].montant)
+
+                }
+                tblBody.appendChild(row)
+            }
+            table.appendChild(tblBody)
+
+            document.body.appendChild(table)
+        }
+        createTable()
+        let delletButton = document.querySelectorAll('.btn-dell')
+        delletButton.forEach(function(button) {
+            button.addEventListener('click', function() {
+                let mont = this.getAttribute('montantRevenu')
+
+                let lign = document.getElementById(mont)
+                lign.parentNode.removeChild(lign)
+
+                //enlever l'element supprimmer
+                let filteredRevenus = Revenus.filter((Revenu) => Revenu.montant !== mont)
+                Revenus = filteredRevenus
+                setContee(Revenus.length)
+            })
+        })
+        let modal = document.getElementById('depenseModal')
+            // notre botton qui nous permet d'afficher le modal
+        let modalBoutton = document.getElementById('btnAjouDepModal')
+        let fermer = document.querySelector('.fermer')
+        modalBoutton.onclick = function() {
+            modal.style.display = "block"
+        }
+
+        fermer.onclick = function() {
+            modal.style.display = "none"
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none"
+            }
+        }
+
+
+        //ajouter revenus
+        let addContactBotton = document.querySelector('.addContactBotton')
+        addContactBotton.onclick = function(event) {
+            event.preventDefault()
+            const titree = document.getElementById('titre').value
+            const montaant = document.getElementById('montant').value
+            if (!titree || !montaant) {
+                alert('Merci de tout ramplir')
+                return
+            }
+            const newsRevenus = {
+                titree,
+                montaant
+            }
+            Revenus.push(newsRevenus)
+            setContee(Revenus.length)
+
+            // ajouter un tr
+            let row = document.createElement('tr')
+            let cell0 = row.insertCell('0')
+            const cell0Text = document.createTextNode(titree)
+            cell0.appendChild(cell0Text)
+            row.appendChild(cell0)
+
+            let cell1 = row.insertCell('1')
+            const cell1Text = document.createTextNode(montaant)
+            cell1.appendChild(cell1Text)
+            row.appendChild(cell1)
+            let buttonCell = document.createElement('td')
+            let delletButton = document.createElement('button')
+            let updetButton = document.createElement('button')
+            let buttonText = document.createTextNode('Supprimer')
+            let buttonTextupdet = document.createTextNode('Modifier')
+            delletButton.setAttribute('class', 'btn-dell')
+            delletButton.setAttribute('montantRevenu', montant)
+            updetButton.setAttribute('class', 'btn-add')
+            delletButton.appendChild(buttonText)
+            updetButton.appendChild(buttonTextupdet)
+                //ajouer un evenment de suppresion
+            delletButton.addEventListener('click', function() {
+                let mont = this.getAttribute('montantRevenu')
+
+                let lign = document.getElementById(mont)
+                lign.parentNode.removeChild(lign)
+
+                //enlever l'element supprimmer
+                let filteredRevenus = Revenus.filter((Revenu) => Revenu.montant !== mont)
+                Revenus = filteredRevenus
+                console.log('sup', mont)
+                setContee(Revenus.length)
+            })
+            buttonCell.appendChild(delletButton)
+            buttonCell.appendChild(updetButton)
+            row.appendChild(buttonCell)
+            row.appendChild(buttonCell)
+            row.setAttribute('id', montant)
+            tblBody.appendChild(row)
+            table.appendChild(tblBody)
+
+            document.body.appendChild(table)
+                //vider les inputs
+            document.getElementById('titre').value = ''
+            document.getElementById('montant').value = ''
+            modal.style.display = "none"
+
+        }
+        setContee(Revenus.length)
+    </script>
+
+
+
+
+    <!-- section Depens -->
+    <div class="listes">
+        <h2>Listes des Depens</h2>
+        <!-- modal 22222 -->
+        <div class="pop-conteneur-revenu" id="popRevenu">
+            <div class="pop">
+                <span class="closs">X</span>
+                <div class="form">
+                    <form method="post">
+                        <label for="titreDep">titre</label>
+                        <input class="input-class" type="text" name="titreDep" id="titreDep" />
+                        <label for="montantDep">montant</label>
+                        <input class="input-class" type="number" name="titreDep" id="montantDep">
+                        <button type="submit" class="addContactBottonDep" style="width: 100%;">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button id="btnAjouRevenupop" type="button" style="background: rgb(251, 197, 197);
+        ">ajouter Depense</button>
+    </div>
+    <div class="tableRevenu">
+        <table class="Revenu">
+            <thead>
+                <tr>
+                    <th>TITRE</th>
+                    <th>MONTANT</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <!-- <tbody>
+                <tr>
+                    <td>Nourriture</td>
+                    <td>300.000 CFA</td>
+                    <td>
+                        <button class="btn-add" type="button"> Modifier</button> <button class="btn-dell" type="button"> Supprimer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>cafe</td>
+                    <td>1000 CFA</td>
+                    <td>
+                        <button class="btn-add" type="button"> Modifier</button> <button class="btn-dell" type="button"> Supprimer</button>
+                    </td>
+                </tr>
+            </tbody> -->
+
+
+        </table>
+    </div>
+    </section>
+
+
+</body>
+
+
+</html>

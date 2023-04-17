@@ -1,0 +1,493 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+
+/* html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+} */
+
+body {
+    width: 100%;
+    background: gainsboro;
+    margin: 0;
+    padding: 0;
+}
+
+.titre {
+    text-align: center;
+    font-size: 25pt;
+    padding: 15px;
+}
+
+p {
+    margin: 105px;
+    font-size: 15pt;
+    margin-top: -150px;
+    list-style: none;
+}
+
+.description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.budget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+@media screen and (max-width: 829px) {
+    .budget {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    #div1,
+    #div2,
+    #div3 {
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .budget {
+        width: 115%;
+    }
+}
+
+@media screen and (max-width: 829px) {
+    .description {
+        /* justify-content: flex-start; */
+        gap: 20px;
+        /* flex-direction: column; */
+        display: block;
+        display: inline-block;
+        position: absolute;
+    }
+    .description #dep {
+        position: absolute;
+        margin: 34px;
+        margin-top: 307px;
+        font-weight: 700;
+    }
+    .description #rev {
+        position: absolute;
+        margin: 34px;
+        margin-top: 43px;
+        font-weight: 700;
+    }
+    .description #solde {
+        position: absolute;
+        margin: 34px;
+        margin-top: 178px;
+        font-weight: 700;
+    }
+}
+
+#div1,
+#div2,
+#div3 {
+    background: gainsboro;
+    width: 30%;
+    height: 108px;
+    border: 3px solid#AAA;
+    margin: 1%;
+    font-size: 25pt;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.depense {
+    font-size: 16px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 90%;
+    margin-bottom: 100px;
+    margin: 50px;
+}
+
+.depense th {
+    padding-top: 11px;
+    padding: 11px;
+    background: #a7a6a6;
+    color: #000;
+    border: 1px solid black;
+}
+
+.depense td {
+    border: 1px solid #000;
+    padding: 28px;
+    text-align: left;
+}
+
+@media screen and (max-width: 372px) {
+    .depense {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: px) {
+    .depense {
+        width: 85%;
+    }
+}
+
+.Revenu {
+    font-size: 16px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 90%;
+    margin-bottom: 100px;
+    margin: 50px;
+}
+
+.Revenu th {
+    padding-top: 11px;
+    padding: 11px;
+    background: #a7a6a6;
+    color: #000;
+    border: 1px solid black;
+}
+
+.Revenu td {
+    border: 1px solid #000;
+    padding: 28px;
+    text-align: left;
+}
+
+@media screen and (max-width: 372px) {
+    .Revenu {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: px) {
+    .Revenu {
+        width: 85%;
+    }
+}
+
+.flex {
+    border: 2px solid #000;
+    width: 10%;
+    height: 50px;
+    margin: 120px;
+    text-align: center;
+    padding-top: 14px;
+    margin-top: -150px;
+    font-size: 15pt;
+    border-radius: 10px;
+}
+
+.cotainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 20px;
+}
+
+.ajouter_dep {
+    margin-left: -15px;
+    font-size: 15pt;
+    margin-bottom: 50px;
+}
+
+.dep {
+    font-size: 15px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 90%;
+    margin-bottom: 10px;
+    margin: 20;
+}
+
+.dep td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: left;
+}
+
+.section_2 {
+    border: 2px solid #000;
+    width: 40%;
+    padding: 30px;
+    margin: 40px;
+    padding-bottom: 150px;
+}
+
+@media screen and (max-width: 780px) {
+    .tablaeu {
+        width: 85%;
+        flex-wrap: wrap;
+    }
+}
+
+.tablaeu {
+    max-width: 1300px;
+    width: 85%;
+    height: auto;
+    margin: 300px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: center;
+    grid-gap: 10px;
+    text-align: center;
+    margin-top: -153px;
+}
+
+.listes {
+    margin: 30px;
+    margin-left: 45px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.listes h2 {
+    margin: auto 0;
+    margin-left: 1px;
+    display: inline-block;
+    margin-bottom: -15px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.listes button {
+    margin-right: 13px;
+    margin-top: 38px;
+    width: 10rem;
+    height: 3em;
+    background: rgb(235, 139, 139);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.listes {
+    margin: 30px;
+    margin-left: 45px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.listes h2 {
+    margin: auto 0;
+    margin-left: 1px;
+    display: inline-block;
+    margin-bottom: -15px;
+    font-size: 15pt;
+}
+
+.listes button {
+    margin-right: 13px;
+    margin-top: 38px;
+    width: 10rem;
+    height: 3em;
+    background: rgb(161, 249, 163);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+@media screen and (max-width: 829px) {
+    .listes {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+.section_2 {
+    width: 400px;
+    height: 350px;
+    border: 1px solid;
+    font-size: 20pt;
+    padding-top: 50px;
+    border-radius: 10px;
+}
+
+
+/* le fond du modal */
+
+.modal-conteneur {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 150px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0, 0.4);
+}
+
+.pop-conteneur-revenu {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 150px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0, 0.4);
+}
+
+
+/* le contenu du modal */
+
+.modal {
+    background-color: #fefefe;
+    width: 80%;
+    padding: 20px;
+    margin: auto;
+    border: 1px solid #888;
+}
+
+.pop {
+    background-color: #fefefe;
+    width: 80%;
+    padding: 20px;
+    margin: auto;
+    border: 1px solid #888;
+}
+
+.fermer {
+    color: gray;
+    font-size: 20px;
+    font-weight: 700;
+    float: right;
+    cursor: pointer;
+}
+
+.fermer:hover,
+.fermer:hover :focus {
+    color: black;
+    text-decoration: none;
+}
+
+.closs {
+    color: gray;
+    font-size: 20px;
+    font-weight: 700;
+    float: right;
+    cursor: pointer;
+}
+
+.closs:hover,
+.closs:hover :focus {
+    color: black;
+    text-decoration: none;
+}
+
+.input-class {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.addContactBotton {
+    width: 100%;
+    font-size: 10pt;
+    font-weight: 700;
+}
+
+.addContactBottonDep {
+    width: 100%;
+    font-size: 10pt;
+    font-weight: 700;
+}
+
+.btn-add {
+    cursor: pointer;
+    background-color: rgb(135, 227, 164);
+    font-weight: 700;
+    padding: 14px 25px;
+    border-radius: 10px;
+}
+
+.btn-dell {
+    cursor: pointer;
+    background-color: rgb(227, 135, 135);
+    font-weight: 700;
+    padding: 14px 20px;
+    border-radius: 10px;
+}
+
+.btn-add,
+.btn-dell {
+    margin: 10 12px;
+}
+
+.btn-add:hover {
+    color: #fff
+}
+
+.btn-dell:hover {
+    color: #fff
+}
+
+#btn-pop {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 7rem;
+    height: 3em;
+    position: relative;
+    background: rgb(251, 197, 197);
+    border-radius: 10px;
+    font-weight: 700;
+    border: 1px solid red;
+    cursor: pointer;
+}
+
+#btn-pop2 {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 7rem;
+    height: 3em;
+    position: relative;
+    background: rgb(163, 244, 188);
+    border-radius: 10px;
+    font-weight: 700;
+    border: 1px solid rgb(36, 238, 63);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 653px) {
+    ul {
+        width: 15px;
+    }
+}
